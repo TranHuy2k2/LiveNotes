@@ -1,5 +1,5 @@
 import { Auth } from "@supabase/auth-ui-react";
-import { ThemeSupa, ThemeMinimal } from "@supabase/auth-ui-shared";
+import { ThemeSupa } from "@supabase/auth-ui-shared";
 import supabase from "../services/supabase";
 
 import image from "../assets/TranHuy2k2.jpg";
@@ -14,7 +14,7 @@ import {
   Badge,
   Text,
 } from "@chakra-ui/react";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import AppContext from "../context/AppContext";
 const AuthComponent = () => {
   const { auth, setAuth } = useContext(AppContext);
