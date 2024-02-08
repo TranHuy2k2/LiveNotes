@@ -1,4 +1,16 @@
-# React + Vite
+# Supabase Features
+
+This is a project to demo some of the features of Supabase.
+
+## Features
+
+- [x] Authentication
+- [x] Realtime Database
+- [x] Storage
+- [x] Database
+- [x] Edge Functions
+
+## React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
