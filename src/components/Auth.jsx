@@ -14,7 +14,10 @@ import {
   Badge,
   Text,
 } from "@chakra-ui/react";
+import { useContext } from "react";
+import AppContext from "../context/AppContext";
 const AuthComponent = () => {
+  const { auth, setAuth } = useContext(AppContext);
   return (
     <Card maxWidth="100%" width={500}>
       <CardHeader>

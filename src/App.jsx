@@ -1,20 +1,14 @@
 import { useEffect, useState } from "react";
-import supabase from "./services/supabase";
-import AuthComponent from "./components/Auth";
+import AppContext from "./context/AppContext";
 
-function App() {
-  const [countries, setCountries] = useState([]);
+function App({ children }) {
+  const [auth, setAuth] = useState(null);
 
-  useEffect(() => {
-    getCountries();
-  }, []);
-
-  async function getCountries() {
-    const { data } = await supabase.from("countries").select();
-    setCountries(data);
-  }
-
-  return <div></div>;
+  return (
+    <AppContext.Provider value={{ auth, setAuth }}>
+      {children}
+    </AppContext.Provider>
+  );
 }
 
 export default App;
