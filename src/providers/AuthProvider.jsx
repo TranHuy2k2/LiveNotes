@@ -18,6 +18,9 @@ export default function AuthProvider({ children }) {
         }
       }
     );
+    const user = supabase.auth.getUser().then((user) => {
+      setAuth(user.data);
+    });
 
     return () => {
       authListener.subscription.unsubscribe();
