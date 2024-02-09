@@ -11,20 +11,15 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import {
-  HamburgerIcon,
-  CloseIcon,
-  ChevronDownIcon,
-  ArrowRightIcon,
-} from "@chakra-ui/icons";
+import { ArrowRightIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
 import "./navbar.scss";
 import logo from "../../assets/TranHuy2k2.jpg";
-import AppContext from "../../context/AppContext";
 import supabase from "../../services/supabase";
+import AuthContext from "../../context/AuthContext";
 
 const NavBar = () => {
-  const { auth, setAuth } = useContext(AppContext);
+  const { auth, setAuth } = useContext(AuthContext);
   const logOut = async () => {
     await supabase.auth.signOut();
     setAuth(null);

@@ -1,8 +1,8 @@
 import React from "react";
 
 const AppContext = React.createContext({
-  auth: null,
-  setAuth: () => {},
+  users: [],
+  setUsers: () => {},
 });
 
 export default AppContext;
