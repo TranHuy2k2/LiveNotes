@@ -1,7 +1,9 @@
 import supabase from "./supabase";
 
-export const sendMessage = (message) => {
-  supabase.from("messages").insert([message]);
+export const sendMessage = async (message) => {
+  const { data, error } = await supabase.from("messages").insert([message]);
+  if (error) console.error("error sending message:", error.message);
+  return data;
 };
 
 export const fetchMessages = async (setMessages) => {

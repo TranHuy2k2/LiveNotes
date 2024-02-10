@@ -8,6 +8,7 @@ export default function AuthPage() {
         justifyContent: "center",
         alignItems: "center",
         width: "100vw",
+        marginTop: "2rem",
       }}
     >
       <AuthComponent />

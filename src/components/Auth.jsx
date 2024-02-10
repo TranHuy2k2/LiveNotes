@@ -22,8 +22,17 @@ const AuthComponent = () => {
     <Card maxWidth="100%" width={500}>
       <CardHeader>
         <Flex justifyContent="space-between">
-          <h2>Become a new user!</h2>
-          <Badge variant="solid" colorScheme="green">
+          <h2
+            style={{
+              fontSize: "1.2rem",
+              textAlign: "center",
+              fontWeight: "bold",
+              color: "#81689D",
+            }}
+          >
+            Become a new user!
+          </h2>
+          <Badge variant="solid" color="#81689D" backgroundColor="white">
             Success
           </Badge>
         </Flex>
@@ -42,7 +51,7 @@ const AuthComponent = () => {
           <Box ml="3">
             <Text fontWeight="bold">
               Tran Gia Huy
-              <Badge ml="1" colorScheme="green">
+              <Badge ml="1" color="#81689D">
                 Author
               </Badge>
             </Text>

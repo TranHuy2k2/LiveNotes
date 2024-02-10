@@ -2,9 +2,9 @@
 
 $font-family: "Roboto", sans-serif;
 $font-size-base: 0.925rem;
-$base-color: #776b5d;
-$text-dark: #3c4250;
-$border-color: #eceef3;
+$base-color: #81689d;
+$text-dark: white;
+$border-color: #474f7a;
 
 // $navbar-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.035);
 // $navbar-shadow: 0 2px 5px 0 #888277;
@@ -66,7 +66,7 @@ a {
 
 .navbar {
   // box-shadow: $navbar-shadow;
-  background-color: white;
+  background-color: #474f7a;
   padding: $navbar-padding-y $navbar-padding-x;
   border-bottom: 1px solid $border-color;
 

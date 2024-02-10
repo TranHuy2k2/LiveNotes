@@ -12,8 +12,11 @@ export default function AppProvider({ children }) {
   const [countryCode, setCountryCode] = useState(
     localStorage.getItem("countryCode")
   );
+  const [messages, setMessages] = useState([]);
+  const [username, setUsername] = useState();
   useEffect(() => {
     const channel = supabase.channel(CHANNEL_NAME);
+    const dbChannel = supabase.channel("schema-db-changes");
     async function joinChannel() {
       const countryCode = await getLocation(setCountryCode);
       let user;
@@ -28,6 +31,8 @@ export default function AppProvider({ children }) {
           if (user?.data?.user) {
             username = user.data.user?.user_metadata?.name;
           }
+          setUsername(username);
+          console.log({ username, countryCode });
           channel.track({ username, countryCode });
         }
       });
@@ -47,10 +52,22 @@ export default function AppProvider({ children }) {
       setUsers(users.sort());
     });
 
+    dbChannel
+      .on(
+        "postgres_changes",
+        {
+          event: "*",
+          schema: "public",
+        },
+        (payload) => console.log(payload)
+      )
+      .subscribe();
+
     joinChannel();
 
     return () => {
       channel.unsubscribe();
+      dbChannel.unsubscribe();
     };
   }, []);
   return (
@@ -59,6 +76,7 @@ export default function AppProvider({ children }) {
         users,
         setUsers,
         countryCode,
+        username,
       }}
     >
       {children}
