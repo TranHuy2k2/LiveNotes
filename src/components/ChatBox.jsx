@@ -13,12 +13,14 @@ import OnlineUsers from "./OnlineUsers";
 import { useContext, useState } from "react";
 import { sendMessage } from "../services/messages";
 import AppContext from "../context/AppContext";
+import Message from "./Message";
 
 export default function ChatBox() {
   const [message, setMessage] = useState("");
-  const { username, countryCode } = useContext(AppContext);
+  const { username, countryCode, messages } = useContext(AppContext);
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setMessage("");
     await sendMessage({ content: message, username, countryCode });
   };
   return (
@@ -45,6 +47,13 @@ export default function ChatBox() {
             </h2>
           </CardHeader>
           <CardBody>
+            <Box py="10px" pt="15px">
+              {messages.map((message, index) => (
+                <div key={index}>
+                  <Message message={message} />
+                </div>
+              ))}
+            </Box>
             <Box py="10px" pt="15px">
               <Container maxW="600px">
                 <form onSubmit={handleSubmit} autoComplete="off">

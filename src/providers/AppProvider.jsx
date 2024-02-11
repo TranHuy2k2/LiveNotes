@@ -22,9 +22,7 @@ export default function AppProvider({ children }) {
       let user;
       try {
         user = await supabase.auth.getUser();
-      } catch (e) {
-        console.log(e);
-      }
+      } catch (e) {}
       channel.subscribe((status) => {
         if (status === "SUBSCRIBED") {
           let username = randomUsername();
@@ -59,7 +57,9 @@ export default function AppProvider({ children }) {
           event: "*",
           schema: "public",
         },
-        (payload) => console.log(payload)
+        (payload) => {
+          setMessages((prev) => [...prev, payload.new]);
+        }
       )
       .subscribe();
 
@@ -77,6 +77,7 @@ export default function AppProvider({ children }) {
         setUsers,
         countryCode,
         username,
+        messages,
       }}
     >
       {children}
