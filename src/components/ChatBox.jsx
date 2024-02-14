@@ -34,58 +34,56 @@ export default function ChatBox() {
       }}
     >
       <OnlineUsers />
-      <div>
-        <Card>
-          <CardHeader>
-            <h2
-              style={{
-                fontSize: "1.2rem",
-                fontWeight: "bold",
-              }}
-            >
-              ChatBox
-            </h2>
-          </CardHeader>
-          <CardBody>
-            <Box py="10px" pt="15px">
-              {messages.map((message, index) => (
-                <div key={index}>
-                  <Message message={message} />
-                </div>
-              ))}
-            </Box>
-            <Box py="10px" pt="15px">
-              <Container maxW="600px">
-                <form onSubmit={handleSubmit} autoComplete="off">
-                  <Stack direction="row">
-                    <Input
-                      name="message"
-                      placeholder="Enter a message"
-                      onChange={(e) => setMessage(e.target.value)}
-                      value={message}
-                      bg="white"
-                      autoFocus
-                      maxLength="500"
-                    />
-                    <IconButton
-                      // variant="outline"
-                      colorScheme="teal"
-                      aria-label="Send"
-                      fontSize="20px"
-                      icon={<ArrowRightIcon />}
-                      type="submit"
-                    />
-                  </Stack>
-                </form>
-                <Box fontSize="10px" mt="1">
-                  Warning: this is a public chat, do not share sensitive
-                  information.
-                </Box>
-              </Container>
-            </Box>
-          </CardBody>
-        </Card>
-      </div>
+      <Card height={400} overflowY="auto">
+        <CardHeader>
+          <h2
+            style={{
+              fontSize: "1.2rem",
+              fontWeight: "bold",
+            }}
+          >
+            ChatBox
+          </h2>
+        </CardHeader>
+        <CardBody>
+          <Box py="10px" pt="15px">
+            {messages.map((message, index) => (
+              <div style={{ marginBottom: 8 }} key={index}>
+                <Message message={message} />
+              </div>
+            ))}
+          </Box>
+          <Box py="10px" pt="15px">
+            <Container maxW="600px">
+              <form onSubmit={handleSubmit} autoComplete="off">
+                <Stack direction="row">
+                  <Input
+                    name="message"
+                    placeholder="Enter a message"
+                    onChange={(e) => setMessage(e.target.value)}
+                    value={message}
+                    bg="white"
+                    autoFocus
+                    maxLength="500"
+                  />
+                  <IconButton
+                    // variant="outline"
+                    colorScheme="teal"
+                    aria-label="Send"
+                    fontSize="20px"
+                    icon={<ArrowRightIcon />}
+                    type="submit"
+                  />
+                </Stack>
+              </form>
+              <Box fontSize="10px" mt="1">
+                Warning: this is a public chat, do not share sensitive
+                information.
+              </Box>
+            </Container>
+          </Box>
+        </CardBody>
+      </Card>
     </div>
   );
 }

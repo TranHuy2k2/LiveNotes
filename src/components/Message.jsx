@@ -7,8 +7,15 @@ import AppContext from "../context/AppContext";
 export default function Message({ message }) {
   const { content, created_at, countryCode, username } = message;
   const { username: currentUsername } = useContext(AppContext);
+  const isSelf = username === currentUsername;
   return (
-    <Card bgColor={username === currentUsername ? "white" : "lightblue"}>
+    <Card
+      bgColor={isSelf ? "white" : "lightblue"}
+      style={{
+        position: "relative",
+        width: "fit-content",
+      }}
+    >
       <CardBody>
         <Flex>
           <Flex flexDirection="column">

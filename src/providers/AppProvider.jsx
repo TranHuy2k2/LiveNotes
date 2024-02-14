@@ -5,6 +5,7 @@ import AppContext from "../context/AppContext";
 import AuthContext from "../context/AuthContext";
 import { getLocation, randomUsername } from "../services/helpers";
 import { CHANNEL_NAME } from "../constant";
+import { fetchMessages } from "../services/messages";
 
 export default function AppProvider({ children }) {
   const { auth } = useContext(AuthContext);
@@ -13,6 +14,7 @@ export default function AppProvider({ children }) {
     localStorage.getItem("countryCode")
   );
   const [messages, setMessages] = useState([]);
+  const [page, setPage] = useState(0);
   const [username, setUsername] = useState();
   useEffect(() => {
     const channel = supabase.channel(CHANNEL_NAME);
@@ -30,11 +32,18 @@ export default function AppProvider({ children }) {
             username = user.data.user?.user_metadata?.name;
           }
           setUsername(username);
-          console.log({ username, countryCode });
           channel.track({ username, countryCode });
         }
       });
     }
+    async function fetchInitialMessages() {
+      const messages = await fetchMessages(setMessages, page);
+
+      if (messages.length) {
+        setPage(page + 1);
+      }
+    }
+    fetchInitialMessages();
 
     channel.on("presence", { event: "sync" }, () => {
       const presenceState = channel.presenceState();
@@ -78,6 +87,8 @@ export default function AppProvider({ children }) {
         countryCode,
         username,
         messages,
+        setMessages,
+        page,
       }}
     >
       {children}

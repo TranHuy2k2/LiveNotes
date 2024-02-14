@@ -4,7 +4,7 @@ fileignoreconfig:
 - filename: .env.example
   checksum: 24963915b4baed855c25c2b2e2b63e43dd2c4af3c1d47356a607f96794f0c95b
 - filename: package-lock.json
-  checksum: 45ab36160b52253341c0922e0f19eaa39441cdf870b4968be84db286eafd8fe0
+  checksum: d3343a73f0e883db863272789f01af1abe85f10b704cb754a7375dcfe38ebe13
 - filename: src/components/ChatBox.jsx
-  checksum: bcfdadd15ca47f71f41cc5c0a191d2c051b2b8026a637229f66ac5fa888e4380
+  checksum: 8897a4922b2456df052f7ec3de36bb546ed4150e5bd50daa7375d6a136bbc2e3
 version: "1.0"

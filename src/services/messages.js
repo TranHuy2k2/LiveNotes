@@ -6,11 +6,17 @@ export const sendMessage = async (message) => {
   return data;
 };
 
-export const fetchMessages = async (setMessages) => {
+export const fetchMessages = async (setMessages, page = 0, pageSize = 10) => {
   const { data: messages, error } = await supabase
     .from("messages")
     .select("*")
-    .order("inserted_at", { ascending: true });
-  if (error) console.error("error fetching messages:", error.message);
+    .order("created_at", { ascending: true })
+    .range(page * pageSize, (page + 1) * pageSize - 1);
+  if (error) {
+    console.error("error fetching messages:", error.message);
+    return;
+  }
+
   setMessages(messages);
+  return messages;
 };
